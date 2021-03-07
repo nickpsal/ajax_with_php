@@ -19,6 +19,7 @@ function getData(start,limit) {
             }
     });
 }
+
 function ManageData(key) {
     var firstname = $("#Fname");
     var lastname = $("#Lname");
