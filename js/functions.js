@@ -44,10 +44,6 @@ function ManageData(key) {
                     rowID:rowID.val()
                 }, 
                 success: function (response) {
-                    $("#manageBtn").attr("value", "Αποθήκευση").attr("onclick", "ManageData('addNew')");
-                    $("#username").removeAttr("disabled", "disabled");
-                    $("#email").removeAttr("disabled", "disabled");
-                    $("#tableManager").hide();
                     alert(response);
                     //auto reload
                     location.reload();
