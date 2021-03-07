@@ -71,7 +71,8 @@
             $firstname = $_POST['firstname'];
             $LastName = $_POST['lastname'];
             $password = $_POST['password'];
-            $query2 = "UPDATE users SET FirstName = '$firstname', LastName = '$LastName' WHERE id = '$id';";   
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $query2 = "UPDATE users SET FirstName = '$firstname', LastName = '$LastName' , password = '$password' WHERE id = '$id';";   
             $sql = $conn->query($query2);
             exit("Ο Χρήστης επερξεγάστηκε με επιτυχία!!!!");
         } 
