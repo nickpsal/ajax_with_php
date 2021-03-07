@@ -77,3 +77,31 @@ function passwordMatch(password,confirm) {
         return true;
     }
 }
+
+function edit(rowID) {
+    $.ajax({
+        url:"includes/ajax.php",
+        method: "POST",
+        dataType: "JSON",
+        data: {
+            key:"getRowData",
+            rowID:rowID
+        }, 
+        success: function (response) {
+            $("#editRowID").val(response.rowID),
+            $("#Fname").val(response.FirstName),
+            $("#Lname").val(response.LastName),
+            $("#email").val(response.email),
+            $("#username").val(response.username),
+            $("#password").val(response.password),
+            $("#confirm").val(response.password),
+            $("#tableManager").show();
+            $("#manageBtn").attr("value", "Αποθήκευση Αλλαγών").attr("onclick", "ManageData('updateROW')");
+            $("#username").attr("disabled", "disabled");
+            $("#email").attr("disabled", "disabled");
+        },
+        error: function(response) {
+            alert("Δεν υπάρχουν Δεδομένα");
+        }
+    });
+}

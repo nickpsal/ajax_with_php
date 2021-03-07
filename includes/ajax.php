@@ -52,6 +52,28 @@
             }else {
                 exit("Σφάλμα : " . mysqli_error($conn));
             }
-        }
+        }elseif ($_POST['key'] == 'getRowData') {
+            $rowID = $conn->real_escape_string($_POST['rowID']);
+            $query = "SELECT * FROM users WHERE id='$rowID'";
+            $sql = $conn->query($query);
+            $data = $sql->fetch_array();
+            $jsonArray = array(
+                'rowID' => $data['id'],
+                'FirstName' => $data['FirstName'],
+                'LastName' => $data['LastName'],
+                'email' => $data['email'],
+                'username' => $data['username'],
+                'password' => $data['password']
+            );
+            exit(json_encode($jsonArray));
+        }elseif ($_POST['key'] == 'updateROW') {
+            $id = $_POST['rowID'];
+            $firstname = $_POST['firstname'];
+            $LastName = $_POST['lastname'];
+            $password = $_POST['password'];
+            $query2 = "UPDATE users SET FirstName = '$firstname', LastName = '$LastName' WHERE id = '$id';";   
+            $sql = $conn->query($query2);
+            exit("Ο Χρήστης επερξεγάστηκε με επιτυχία!!!!");
+        } 
     }
 ?>  
