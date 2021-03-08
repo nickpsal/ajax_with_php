@@ -55,22 +55,24 @@ function ManageData(key) {
 
 function checkifEmpty(caller) {
     if (caller.val() == "") {
-        caller.css('border', '2px solid red');
+        caller.attr('class','form-control is-invalid');
         return false;
     }else{
-        caller.css('border', '');
+        caller.attr('class','form-control');
         return true;
     }
 }
 
 function passwordMatch(password,confirm) {
     if (password.val() != confirm.val()) {
-        password.css('border', '2px solid red');
-        confirm.css('border', '2px solid red');
+        $("#password").attr('class', 'form-control is-invalid')
+        $("#confirm").attr('class', 'form-control is-invalid')
+        document.getElementById('pass').innerHTML = "Password dont match";
+        document.getElementById('con').innerHTML = "Password dont match";
         return false;
     }else {
-        password.css('border', '');
-        confirm.css('border', '');
+        $("#password").attr('class', 'form-control')
+        $("#confirm").attr('class', 'form-control')
         return true;
     }
 }

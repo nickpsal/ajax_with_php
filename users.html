@@ -18,15 +18,29 @@
                     <div class="modal-header">
                         <h2 class="modal-title">Εισαγωγή Νέου Χρήστη</h2>
                     </div>
-                    <div class="modal-body">
-                        <input type="text" class="form-control" id="Fname" name="FirstName" placeholder = "Όνομα"><br>
-                        <input type="text" class="form-control" id="Lname" name="LastName" placeholder = "Επώνυμο"><br>
-                        <input type="text" class="form-control" id="email" name="email" placeholder = "Διεύθηνση Email"><br>
-                        <input type="text" class="form-control" id="username" name="Username" placeholder = "Όνομα Χρήστη"><br>
-                        <input type="password" class="form-control" id="password" name="Password" placeholder = "Κωδικός Πρόσβασης"><br>
-                        <input type="password" class="form-control" id="confirm" name="confirm" placeholder = "Επιβαιβαίωση Κωδικού Πρόσβασης"><br>
-                        <input type="hidden"  id="editRowID" value="0">
-                    </div>
+                    <form class="contact-form" method="POST" novalidate="novalidate">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" id="Fname" name="FirstName" placeholder = "Όνομα">
+                                    <div class="invalid-feedback">Δεν δώσατε Όνομα.</div>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="Lname" name="LastName" placeholder = "Επώνυμο">
+                                    <div class="invalid-feedback">Δεν δώσατε Επώνυμο.</div><br>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" id="email" name="email" placeholder = "Διεύθηνση Email">
+                            <div class="invalid-feedback">Δεν δώσατε Διεύθηνση Email.</div><br>
+                            <input type="text" class="form-control" id="username" name="Username" placeholder = "Όνομα Χρήστη">
+                            <div class="invalid-feedback">Δεν δώσατε Όνομα Χρήστη.</div><br>
+                            <input type="password" class="form-control" id="password" name="Password" placeholder = "Κωδικός Πρόσβασης">
+                            <div class="invalid-feedback" id="pass">Δεν δώσατε κωδικό.</div><br>
+                            <input type="password" class="form-control" id="confirm" name="confirm" placeholder = "Επιβεβαίωση Κωδικού Πρόσβασης">
+                            <div class="invalid-feedback" id="con">Δεν δώσατε Επιβεβαίωση Κωδικού</div><br>
+                            <input type="hidden"  id="editRowID" value="0">
+                        </div>
+                    </form>
                     <div class="modal-footer">
                         <input type="button" id = "manageBtn" class="btn btn-success" onclick="ManageData('addNew')" value="Αποθήκευση">
                         <input type="button" class="btn btn-success" id = "close" value="Close">
