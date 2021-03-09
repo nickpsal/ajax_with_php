@@ -29,11 +29,11 @@
                 exit('reachedMax');
             }
         }elseif ($_POST['key'] == 'addNew') {
-            $firstname = $_POST['firstname'];
-            $LastName = $_POST['lastname'];
-            $email = $_POST['email'];
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            $firstname = $conn->real_escape_string($_POST['firstname']);
+            $LastName = $conn->real_escape_string($_POST['lastname']);
+            $email = $conn->real_escape_string($_POST['email']);
+            $username = $conn->real_escape_string($_POST['username']);
+            $password = $conn->real_escape_string($_POST['password']);
             if ($conn) {
                 $query1 = "SELECT id FROM users WHERE username = '$username';";
                 $query2 = "SELECT id FROM users WHERE email = '$email';";
