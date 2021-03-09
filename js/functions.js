@@ -45,8 +45,6 @@ function ManageData(key) {
                 }, 
                 success: function (response) {
                     alert(response);
-                    //auto reload
-                    location.reload();
                 }
             });
         }
@@ -71,8 +69,10 @@ function passwordMatch(password,confirm) {
         document.getElementById('con').innerHTML = "Password dont match";
         return false;
     }else {
-        $("#password").attr('class', 'form-control')
-        $("#confirm").attr('class', 'form-control')
+        $("#password").attr('class', 'form-control');
+        $("#confirm").attr('class', 'form-control');
+        document.getElementById('pass').innerHTML = "Δεν δώσατε κωδικό.";
+        document.getElementById('con').innerHTML = "Δεν δώσατε Επιβεβαίωση Κωδικού.";
         return true;
     }
 }
@@ -95,6 +95,7 @@ function edit(rowID) {
             $("#password").val(response.password),
             $("#confirm").val(response.password),
             $("#tableManager").show();
+            document.getElementById('window_label').innerHTML = "Επερξεγασία του Χρήστη " +rowID; 
             $("#manageBtn").attr("value", "Αποθήκευση Αλλαγών").attr("onclick", "ManageData('updateROW')");
             $("#username").attr("disabled", "disabled");
             $("#email").attr("disabled", "disabled");
@@ -104,3 +105,56 @@ function edit(rowID) {
         }
     });
 }
+
+function remove(rowID) {
+    var confirm_delete = confirm("Θέλετε να διαγράψετε τον χρήστη με id " + rowID);
+    if (confirm_delete) {
+        $.ajax({
+            url:"includes/ajax.php",
+            method: "POST",
+            dataType: "text",
+            data: {
+                key:"removeRowData",
+                rowID:rowID
+            },
+            success:function(response) {
+                alert(response);
+                location.reload();
+            } 
+        });
+    }
+}
+
+function viewData(rowID) {
+    $.ajax({
+        url:"includes/ajax.php",
+        method: "POST",
+        dataType: "JSON",
+        data: {
+            key:"getRowData",
+            rowID:rowID
+        }, 
+        success: function (response) {
+            $("#editRowID").val(response.rowID),
+            $("#Fname").val(response.FirstName),
+            $("#Lname").val(response.LastName),
+            $("#email").val(response.email),
+            $("#username").val(response.username),
+            $("#password").val(response.password),
+            $("#confirm").val(response.password),
+            $("#tableManager").show();
+            document.getElementById('window_label').innerHTML = "Προβολή του Χρήστη " +rowID; 
+            $("#manageBtn").attr("hidden", "hidden");
+            $("#Fname").attr("disabled", "disabled");
+            $("#Lname").attr("disabled", "disabled");
+            $("#email").attr("disabled", "disabled");
+            $("#username").attr("disabled", "disabled");
+            $("#password").attr("disabled", "disabled");
+            $("#confirm").attr("disabled", "disabled");
+        },
+        error: function(response) {
+            alert("Δεν υπάρχουν Δεδομένα");
+        }
+    });
+}
+

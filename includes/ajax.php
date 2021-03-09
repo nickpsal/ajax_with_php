@@ -1,5 +1,5 @@
 <?php
-    include "datanase.php";
+    include "database.php";
     global $conn;
     if (isset($_POST['key'])) {
         if ($_POST['key'] == 'getData') {
@@ -19,8 +19,8 @@
                     <td align = "center">'.$data['username'].'</td>
                     <td align="center">
                     <input type="button" class="btn btn-primary" onclick="edit('.$data['id'].')" name = "edit" id="edit" value="ΕΠΕΡΞΕΓΑΣΙΑ">
-                    <input type="button" class="btn btn-primary" name = "view" value="ΠΡΟΒΟΛΗ">
-                    <input type="button" class="btn btn-danger" name = "delete" value="ΔΙΑΓΡΑΦΗ">
+                    <input type="button" class="btn btn-primary" onclick="viewData('.$data['id'].')" name = "view" value="ΠΡΟΒΟΛΗ">
+                    <input type="button" class="btn btn-danger" onclick="remove('.$data['id'].')" name = "delete" value="ΔΙΑΓΡΑΦΗ">
                     </td>
                     </tr>';
                 }
@@ -67,7 +67,7 @@
             );
             exit(json_encode($jsonArray));
         }elseif ($_POST['key'] == 'updateROW') {
-            $id = $_POST['rowID'];
+            $id = $conn->real_escape_string($_POST['rowID']);
             $firstname = $_POST['firstname'];
             $LastName = $_POST['lastname'];
             $password = $_POST['password'];
@@ -75,6 +75,11 @@
             $query2 = "UPDATE users SET FirstName = '$firstname', LastName = '$LastName' , password = '$password' WHERE id = '$id';";   
             $sql = $conn->query($query2);
             exit("Ο Χρήστης επερξεγάστηκε με επιτυχία!!!!");
-        } 
+        }elseif ($_POST['key'] == 'removeRowData') {
+            $id = $conn->real_escape_string($_POST['rowID']);
+            $query = "DELETE FROM users WHERE id = '$id';";
+            $sql = $conn->query($query);
+            exit("Ο Χρήστης διαγράφτηκε με επιτυχία!!!!!!");
+        }
     }
 ?>  
