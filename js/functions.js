@@ -140,8 +140,6 @@ function viewData(rowID) {
             $("#Lname").val(response.LastName),
             $("#email").val(response.email),
             $("#username").val(response.username),
-            $("#password").val(response.password),
-            $("#confirm").val(response.password),
             $("#tableManager").show();
             document.getElementById('window_label').innerHTML = "Προβολή του Χρήστη " +rowID; 
             $("#manageBtn").attr("hidden", "hidden");
