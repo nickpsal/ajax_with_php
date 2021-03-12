@@ -5,7 +5,6 @@ $(document).ready(function() {
     });
     $("#close").click(function(){
         $("#tableManager").hide();
-        location.reload();
     });
     getData(0,50);
 });

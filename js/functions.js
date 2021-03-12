@@ -147,8 +147,8 @@ function viewData(rowID) {
             $("#Lname").attr("disabled", "disabled");
             $("#email").attr("disabled", "disabled");
             $("#username").attr("disabled", "disabled");
-            $("#password").attr("disabled", "disabled");
-            $("#confirm").attr("disabled", "disabled");
+            $("#password").attr("type", "hidden");
+            $("#confirm").attr("type", "hidden");
         },
         error: function(response) {
             alert("Δεν υπάρχουν Δεδομένα");
