@@ -45,6 +45,8 @@ function ManageData(key) {
                 }, 
                 success: function (response) {
                     alert(response);
+                    $("#tableManager").hide();
+                    location.reload();
                 }
             });
         }
